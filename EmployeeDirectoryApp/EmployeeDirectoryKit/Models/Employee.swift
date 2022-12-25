@@ -1,6 +1,10 @@
 import Foundation
 
-struct Employee: Codable {
+struct EmployeeList: Codable, Hashable {
+    let employees: [Employee]
+}
+
+struct Employee: Codable, Hashable {
     let uuid: String
     let fullName: String
     let emailAddress: String
@@ -12,10 +16,8 @@ struct Employee: Codable {
     let employeeType: EmployeeType
 }
 
-extension Employee {
-    enum EmployeeType: String, Codable {
-        case contractor = "CONTRACTOR"
-        case fullTime = "FULL_TIME"
-        case partTime = "PART_TIME"
-    }
+enum EmployeeType: String, Codable, Hashable {
+    case contractor = "CONTRACTOR"
+    case fullTime = "FULL_TIME"
+    case partTime = "PART_TIME"
 }

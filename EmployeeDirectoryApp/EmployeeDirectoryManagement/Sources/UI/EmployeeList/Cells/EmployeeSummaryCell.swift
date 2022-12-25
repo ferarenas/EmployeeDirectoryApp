@@ -5,8 +5,8 @@ import Kingfisher
 
 protocol EmployeeSummaryCellViewModel {
     var imageUrl: URL { get }
-    var employeeName: String { get }
-    var employeeTeam: String { get }
+    var name: String { get }
+    var team: String { get }
 }
 
 final class EmployeeSummaryCell: UICollectionViewCell {

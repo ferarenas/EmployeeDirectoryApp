@@ -2,6 +2,12 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol HeaderCellViewModel {
+    var title: String { get }
+    var firstInstruction: String { get }
+    var secondInstruction: String { get }
+}
+
 final class HeaderCell: UICollectionViewCell {
     static var estimatedHeight: Double {
         UIFontMetrics.default.scaledValue(for: 22)
@@ -40,7 +46,6 @@ final class HeaderCell: UICollectionViewCell {
     private func setUpTitleLabel() {
         let titleLabel: UILabel = .init()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        titleLabel.text = "Employee List"
         
         labelStackView.addArrangedSubview(titleLabel)
     }
@@ -48,7 +53,6 @@ final class HeaderCell: UICollectionViewCell {
     private func setUpFirstInstructionLabel() {
         let firstInstructionLabel: UILabel = .init()
         firstInstructionLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        firstInstructionLabel.text = "Touch Employee to Expand"
         
         labelStackView.addArrangedSubview(firstInstructionLabel)
     }
@@ -56,7 +60,6 @@ final class HeaderCell: UICollectionViewCell {
     private func setUpSecondInstructionLabel() {
         let secondInstructionLabel: UILabel = .init()
         secondInstructionLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        secondInstructionLabel.text = "Pull to refresh"
         
         labelStackView.addArrangedSubview(secondInstructionLabel)
     }

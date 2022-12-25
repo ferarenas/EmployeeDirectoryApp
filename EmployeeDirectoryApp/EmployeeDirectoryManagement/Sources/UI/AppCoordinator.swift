@@ -16,8 +16,8 @@ class AppCoordinator {
     }
     
     func showEmployeeList(animated: Bool) {
-        let viewController = EmployeeListViewController()
-        
-        navigationController.pushViewController(viewController, animated: animated)
+//        let viewController = EmployeeListViewController()
+//        
+//        navigationController.pushViewController(viewController, animated: animated)
     }
 }

@@ -13,7 +13,6 @@
 		7D0CF7552957FAB800F1DA57 /* EmployeeDirectoryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF7542957FAB800F1DA57 /* EmployeeDirectoryAppTests.swift */; };
 		7D0CF75F2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF75E2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift */; };
 		7D0CF7612957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF7602957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift */; };
-		7D8148F42958003500B0C6C1 /* EmployeeDirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */; };
 		7D8148F52958003500B0C6C1 /* EmployeeDirectoryAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */; };
 		7D8148F62958003500B0C6C1 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F32958003500B0C6C1 /* Employee.swift */; };
 		7D814900295807DB00B0C6C1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */; };
@@ -22,7 +21,9 @@
 		7DD4E1162958CD7F00B522C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E1152958CD7F00B522C2 /* SnapKit */; };
 		7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */; };
 		7DD4E11B2958D27A00B522C2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E11A2958D27A00B522C2 /* Kingfisher */; };
-		7DD4E11D2958D69800B522C2 /* EmployeeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E11C2958D69800B522C2 /* EmployeeInfoCell.swift */; };
+		7DD4E11F2958E4A700B522C2 /* HeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */; };
+		7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */; };
+		7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,14 +54,15 @@
 		7D0CF75A2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeDirectoryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0CF75E2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAppUITests.swift; sourceTree = "<group>"; };
 		7D0CF7602957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryService.swift; sourceTree = "<group>"; };
 		7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAPIService.swift; sourceTree = "<group>"; };
 		7D8148F32958003500B0C6C1 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
 		7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSummaryCell.swift; sourceTree = "<group>"; };
-		7DD4E11C2958D69800B522C2 /* EmployeeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeInfoCell.swift; sourceTree = "<group>"; };
+		7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCellModel.swift; sourceTree = "<group>"; };
+		7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewModel.swift; sourceTree = "<group>"; };
+		7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewModel+EmployeeModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +151,6 @@
 		7D8148EF2958003500B0C6C1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */,
 				7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */,
 			);
 			path = Services;
@@ -204,6 +205,8 @@
 			children = (
 				7DD4E1112958C6BB00B522C2 /* Cells */,
 				7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */,
+				7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */,
+				7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift */,
 			);
 			path = EmployeeList;
 			sourceTree = "<group>";
@@ -213,7 +216,7 @@
 			children = (
 				7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */,
 				7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */,
-				7DD4E11C2958D69800B522C2 /* EmployeeInfoCell.swift */,
+				7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -357,14 +360,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D814904295809DF00B0C6C1 /* EmployeeListViewController.swift in Sources */,
+				7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */,
 				7D814900295807DB00B0C6C1 /* AppCoordinator.swift in Sources */,
 				7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */,
 				7D0CF73E2957FAB700F1DA57 /* AppDelegate.swift in Sources */,
+				7DD4E11F2958E4A700B522C2 /* HeaderCellModel.swift in Sources */,
+				7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift in Sources */,
 				7D8148F52958003500B0C6C1 /* EmployeeDirectoryAPIService.swift in Sources */,
 				7D8148F62958003500B0C6C1 /* Employee.swift in Sources */,
-				7D8148F42958003500B0C6C1 /* EmployeeDirectoryService.swift in Sources */,
 				7DD4E1132958C7FD00B522C2 /* HeaderCell.swift in Sources */,
-				7DD4E11D2958D69800B522C2 /* EmployeeInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

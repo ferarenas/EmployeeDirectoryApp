@@ -1,7 +1,11 @@
 import Foundation
 
-final class EmployeeDirectoryAPIService: EmployeeDirectoryService {
-    private let decoder: JSONDecoder = .init()
+public class EmployeeDirectoryAPIService {
+    let decoder: JSONDecoder = {
+        let d = JSONDecoder()
+        d.keyDecodingStrategy = .convertFromSnakeCase
+        return d
+    }()
     
     func getEmployeeList<T: Decodable>(url: URL) async throws -> T {
         do {
