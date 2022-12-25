@@ -16,6 +16,9 @@
 		7D0CF7552957FAB800F1DA57 /* EmployeeDirectoryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF7542957FAB800F1DA57 /* EmployeeDirectoryAppTests.swift */; };
 		7D0CF75F2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF75E2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift */; };
 		7D0CF7612957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CF7602957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift */; };
+		7D8148F42958003500B0C6C1 /* EmployeeDirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */; };
+		7D8148F52958003500B0C6C1 /* EmployeeDirectoryAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */; };
+		7D8148F62958003500B0C6C1 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F32958003500B0C6C1 /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		7D0CF75A2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeDirectoryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0CF75E2957FAB800F1DA57 /* EmployeeDirectoryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAppUITests.swift; sourceTree = "<group>"; };
 		7D0CF7602957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryService.swift; sourceTree = "<group>"; };
+		7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeDirectoryAPIService.swift; sourceTree = "<group>"; };
+		7D8148F32958003500B0C6C1 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		7D0CF73C2957FAB700F1DA57 /* EmployeeDirectoryApp */ = {
 			isa = PBXGroup;
 			children = (
+				7D8148EE2958001700B0C6C1 /* EmployeeDirectoryKit */,
 				7D0CF73D2957FAB700F1DA57 /* AppDelegate.swift */,
 				7D0CF73F2957FAB700F1DA57 /* SceneDelegate.swift */,
 				7D0CF7412957FAB700F1DA57 /* ViewController.swift */,
@@ -125,6 +132,32 @@
 				7D0CF7602957FAB800F1DA57 /* EmployeeDirectoryAppUITestsLaunchTests.swift */,
 			);
 			path = EmployeeDirectoryAppUITests;
+			sourceTree = "<group>";
+		};
+		7D8148EE2958001700B0C6C1 /* EmployeeDirectoryKit */ = {
+			isa = PBXGroup;
+			children = (
+				7D8148F22958003500B0C6C1 /* Models */,
+				7D8148EF2958003500B0C6C1 /* Services */,
+			);
+			path = EmployeeDirectoryKit;
+			sourceTree = "<group>";
+		};
+		7D8148EF2958003500B0C6C1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7D8148F02958003500B0C6C1 /* EmployeeDirectoryService.swift */,
+				7D8148F12958003500B0C6C1 /* EmployeeDirectoryAPIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7D8148F22958003500B0C6C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D8148F32958003500B0C6C1 /* Employee.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +294,9 @@
 				7D0CF7422957FAB700F1DA57 /* ViewController.swift in Sources */,
 				7D0CF73E2957FAB700F1DA57 /* AppDelegate.swift in Sources */,
 				7D0CF7402957FAB700F1DA57 /* SceneDelegate.swift in Sources */,
+				7D8148F52958003500B0C6C1 /* EmployeeDirectoryAPIService.swift in Sources */,
+				7D8148F62958003500B0C6C1 /* Employee.swift in Sources */,
+				7D8148F42958003500B0C6C1 /* EmployeeDirectoryService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
