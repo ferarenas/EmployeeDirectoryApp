@@ -105,13 +105,8 @@
 		7D0CF73C2957FAB700F1DA57 /* EmployeeDirectoryApp */ = {
 			isa = PBXGroup;
 			children = (
+				7D8148FB295805D300B0C6C1 /* EmployeeDirectoryManagement */,
 				7D8148EE2958001700B0C6C1 /* EmployeeDirectoryKit */,
-				7D0CF73D2957FAB700F1DA57 /* AppDelegate.swift */,
-				7D0CF73F2957FAB700F1DA57 /* SceneDelegate.swift */,
-				7D0CF7412957FAB700F1DA57 /* ViewController.swift */,
-				7D0CF7432957FAB700F1DA57 /* Main.storyboard */,
-				7D0CF7462957FAB800F1DA57 /* Assets.xcassets */,
-				7D0CF7482957FAB800F1DA57 /* LaunchScreen.storyboard */,
 				7D0CF74B2957FAB800F1DA57 /* Info.plist */,
 			);
 			path = EmployeeDirectoryApp;
@@ -158,6 +153,43 @@
 				7D8148F32958003500B0C6C1 /* Employee.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7D8148FB295805D300B0C6C1 /* EmployeeDirectoryManagement */ = {
+			isa = PBXGroup;
+			children = (
+				7D8148FC295805EC00B0C6C1 /* Sources */,
+			);
+			path = EmployeeDirectoryManagement;
+			sourceTree = "<group>";
+		};
+		7D8148FC295805EC00B0C6C1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7D8148FE2958060F00B0C6C1 /* Resources */,
+				7D8148FD2958060900B0C6C1 /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7D8148FD2958060900B0C6C1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7D0CF7412957FAB700F1DA57 /* ViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7D8148FE2958060F00B0C6C1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7D0CF73F2957FAB700F1DA57 /* SceneDelegate.swift */,
+				7D0CF73D2957FAB700F1DA57 /* AppDelegate.swift */,
+				7D0CF7432957FAB700F1DA57 /* Main.storyboard */,
+				7D0CF7462957FAB800F1DA57 /* Assets.xcassets */,
+				7D0CF7482957FAB800F1DA57 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
