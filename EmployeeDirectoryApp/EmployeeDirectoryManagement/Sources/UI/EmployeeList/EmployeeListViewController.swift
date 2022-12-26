@@ -7,6 +7,8 @@ protocol EmployeeListViewControllerViewModel: ObservableObject {
     var header: HeaderCellModel { get }
     var employees: [EmployeeModel] { get }
     var isLoading: Bool { get }
+    
+    func loadEmployees()
 }
 
 final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
@@ -26,7 +28,8 @@ where ViewModel: EmployeeListViewControllerViewModel {
     private let viewModel: ViewModel
     private var dataSource: DataSource?
     private var cancellables: Set<AnyCancellable> = []
-    private var collectionView: UICollectionView!
+    private var collectionView: UICollectionView = .init()
+    private var onRefresh: (() async -> Void)?
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -39,9 +42,32 @@ where ViewModel: EmployeeListViewControllerViewModel {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRefresh { [weak self] in
+            self?.viewModel.loadEmployees()
+        }
+        view.addSubview(collectionView)
+        
+        view.backgroundColor = .red
 
 //        collectionView.delegate = self
 //        collectionView.dataSource = self
+    }
+    
+// MARK: - Pull to refresh
+    func setupRefresh(onRefresh: @escaping () async -> Void) {
+        collectionView.alwaysBounceVertical = true
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.backgroundColor = .clear
+        collectionView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.onRefresh = onRefresh
+    }
+
+    @objc
+    private func didPullToRefresh(_ sender: UIRefreshControl) {
+        Task {
+            await onRefresh?()
+            sender.endRefreshing()
+        }
     }
     
 // MARK: - DataSource
