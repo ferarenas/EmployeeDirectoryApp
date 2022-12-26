@@ -24,6 +24,7 @@
 		7DD4E11F2958E4A700B522C2 /* HeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */; };
 		7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */; };
 		7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift */; };
+		7DD4E1272959133100B522C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1262959133100B522C2 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCellModel.swift; sourceTree = "<group>"; };
 		7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewModel.swift; sourceTree = "<group>"; };
 		7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewModel+EmployeeModel.swift"; sourceTree = "<group>"; };
+		7DD4E1262959133100B522C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				7D0CF73D2957FAB700F1DA57 /* AppDelegate.swift */,
 				7D0CF7432957FAB700F1DA57 /* Main.storyboard */,
 				7D0CF7462957FAB800F1DA57 /* Assets.xcassets */,
+				7DD4E1262959133100B522C2 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D814904295809DF00B0C6C1 /* EmployeeListViewController.swift in Sources */,
+				7DD4E1272959133100B522C2 /* Constants.swift in Sources */,
 				7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */,
 				7D814900295807DB00B0C6C1 /* AppCoordinator.swift in Sources */,
 				7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */,

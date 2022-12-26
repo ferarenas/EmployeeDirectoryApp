@@ -1,37 +1,38 @@
 import Foundation
+import Combine
 
 final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     let header: HeaderCellModel
-    var employees: [EmployeeModel] = []
     
-    init() {
+    @Published var employees: [EmployeeModel] = []
+    @Published var isLoading: Bool = false
+    
+    private let url: URL
+    
+    init(urlType: urlTypes) {
         self.header = .init(
             title: "TITLE",
             firstInstruction: "firstInstruction",
             secondInstruction: "secondInstruction"
         )
-        
+        self.url = URL(string: urlType.rawValue)!
+        loadEmployees()
+    }
+    
+    func loadEmployees() {
         Task {
-            
-            
-            
             do {
-               try await getEmployees()
-            }
-            catch {
+                let employeeList: EmployeeList = try await EmployeeDirectoryAPIService().getEmployeeList(url: url)
+                employees = employeeList.employees.compactMap(EmployeeModel.init).sorted { $0.name < $1.name }
+
+                for employee in employees {
+                    print(employee.name)
+                }
+                isLoading = false
+            } catch {
+                isLoading = false
                 print(error)
             }
         }
     }
-    
-    func getEmployees() async throws  {
-        do {
-            let successUrl = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees.json")!
-            let employeeList: EmployeeList = try await EmployeeDirectoryAPIService().getEmployeeList(url: successUrl)
-            self.employees = employeeList.employees.compactMap(EmployeeModel.init)
-        } catch {
-            print(error)
-        }
-    }
-    
 }

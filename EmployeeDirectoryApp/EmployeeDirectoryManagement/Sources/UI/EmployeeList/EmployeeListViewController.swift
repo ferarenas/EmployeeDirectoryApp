@@ -6,6 +6,7 @@ protocol EmployeeListViewControllerViewModel: ObservableObject {
     
     var header: HeaderCellModel { get }
     var employees: [EmployeeModel] { get }
+    var isLoading: Bool { get }
 }
 
 final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
@@ -26,15 +27,10 @@ where ViewModel: EmployeeListViewControllerViewModel {
     private var dataSource: DataSource?
     private var cancellables: Set<AnyCancellable> = []
     private var collectionView: UICollectionView!
-//    private var expandedEmployees: Set<ViewModel.Employee> = [] {
-//        didSet {
-//            updateDataSource()
-//        }
-//    }
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -44,8 +40,8 @@ where ViewModel: EmployeeListViewControllerViewModel {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
     }
     
 // MARK: - DataSource

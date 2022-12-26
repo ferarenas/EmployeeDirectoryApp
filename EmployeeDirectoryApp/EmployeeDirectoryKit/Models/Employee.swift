@@ -10,8 +10,8 @@ struct Employee: Codable, Hashable {
     let emailAddress: String
     let phoneNumber: String?
     let biography: String?
-    let photoURLSmall: String?
-    let photoURLLarge: String?
+    let photoUrlSmall: String?
+    let photoUrlLarge: String?
     let team: String
     let employeeType: EmployeeType
 }
