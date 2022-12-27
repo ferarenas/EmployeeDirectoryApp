@@ -50,6 +50,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
         setUpDataSource()
         setUpLayout()
         updateDataSource()
+        viewModel.loadEmployees()
         
         setUpRefresh { [weak self] in
             self?.viewModel.loadEmployees()

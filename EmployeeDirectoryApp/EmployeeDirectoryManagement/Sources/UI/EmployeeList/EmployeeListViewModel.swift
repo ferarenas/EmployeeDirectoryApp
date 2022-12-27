@@ -5,11 +5,10 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     private typealias Strings = L10n.EmployeeList
     
     let header: HeaderCellModel
-    @Published var employees: [EmployeeSummaryCellModel] = []
-    
-    var errorSubject: PassthroughSubject<Error, Never> = .init()
+    @Published private(set) var employees: [EmployeeSummaryCellModel] = []
     var error: AnyPublisher<Error, Never> { errorSubject.eraseToAnyPublisher() }
     
+    private var errorSubject: PassthroughSubject<Error, Never> = .init()
     private let url: URL
     
     init(urlType: urlTypes) {
@@ -18,7 +17,6 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
             subTitle: Strings.subtitle
         )
         self.url = URL(string: urlType.rawValue)!
-        loadEmployees()
     }
     
     func loadEmployees() {
