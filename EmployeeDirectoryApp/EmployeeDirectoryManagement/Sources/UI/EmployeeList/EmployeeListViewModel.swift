@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
+    private typealias Strings = L10n.EmployeeList
     let header: HeaderCellModel
     
     @Published var employees: [EmployeeModel] = []
@@ -11,9 +12,9 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     
     init(urlType: urlTypes) {
         self.header = .init(
-            title: "TITLE",
-            firstInstruction: "firstInstruction",
-            secondInstruction: "secondInstruction"
+            title: Strings.employeeListTitle,
+            firstInstruction: Strings.firstTitle,
+            secondInstruction: "TO DELETE"
         )
         self.url = URL(string: urlType.rawValue)!
         loadEmployees()
@@ -24,10 +25,6 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
             do {
                 let employeeList: EmployeeList = try await EmployeeDirectoryAPIService().getEmployeeList(url: url)
                 employees = employeeList.employees.compactMap(EmployeeModel.init).sorted { $0.name < $1.name }
-
-                for employee in employees {
-                    print(employee.name)
-                }
                 isLoading = false
             } catch {
                 isLoading = false

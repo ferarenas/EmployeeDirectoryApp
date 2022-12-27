@@ -17,6 +17,9 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     
     private let employeePhoto: UIImageView = .init()
     private let cellStackView: UIStackView = .init()
+    private let nameLabel: UILabel = .init()
+    private let teamLabel: UILabel = .init()
+    
     private let labelStackView: UIStackView = .init()
     
     required init?(coder: NSCoder) {
@@ -55,18 +58,25 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     }
     
     private func setUpEmployeeName() {
-        let nameLabel: UILabel = .init()
+        
         nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         
         labelStackView.addArrangedSubview(nameLabel)
     }
     
     private func setUpEmployeeTeam() {
-        let teamLabel: UILabel = .init()
         teamLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         labelStackView.addArrangedSubview(teamLabel)
     }
     
 }
+
+extension EmployeeSummaryCell {
+    func configure(with viewModel: EmployeeSummaryCellViewModel) {
+        nameLabel.text = viewModel.name
+        teamLabel.text = viewModel.team
+    }
+}
+
 

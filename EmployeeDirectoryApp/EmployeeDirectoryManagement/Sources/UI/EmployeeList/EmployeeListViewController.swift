@@ -47,6 +47,8 @@ where ViewModel: EmployeeListViewControllerViewModel {
         setUpDataSource()
         setupLayout()
         updateDataSource()
+        bindToViewModel()
+        
         
         setupRefresh { [weak self] in
             self?.viewModel.loadEmployees()
@@ -58,6 +60,16 @@ where ViewModel: EmployeeListViewControllerViewModel {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.delegate = self
         view.addSubview(collectionView)
+    }
+    
+    func bindToViewModel() {
+        cancellables.insert(
+            viewModel
+                .objectWillChange
+                .debounce(for: 0, scheduler: DispatchQueue.main)
+                .eraseToAnyPublisher()
+                .sink{ [weak self] _ in self?.updateDataSource() }
+        )
     }
     
 // MARK: - Pull to refresh
@@ -82,13 +94,25 @@ private extension EmployeeListViewController {
     func setUpDataSource() {
         typealias CellRegistration = UICollectionView.CellRegistration
         
-        let headerCell = CellRegistration(for: HeaderCell.self)
+        let headerCell = CellRegistration<HeaderCell, HeaderCellModel> { cell, _, item in
+            cell.configure(with: item)
+        }
+        
+        let employeeCell = CellRegistration<EmployeeSummaryCell, EmployeeSummaryCellViewModel> { cell, _, item in
+            cell.configure(with: item)
+        }
         
         let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell? in
             switch item {
             case let .header(item):
                 return collectionView.dequeueConfiguredReusableCell(
                     using: headerCell,
+                    for: indexPath,
+                    item: item
+                )
+            case let .employeeSummary(item):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: employeeCell,
                     for: indexPath,
                     item: item
                 )
@@ -106,6 +130,11 @@ private extension EmployeeListViewController {
 
         snapshot.appendSections([.header])
         snapshot.appendItems([.header(viewModel.header)])
+        
+        if !viewModel.employees.isEmpty {
+            snapshot.appendSections([.employees])
+            snapshot.appendItems(viewModel.employees.map(Item.employeeSummary))
+        }
     }
 }
 
@@ -114,13 +143,14 @@ private extension EmployeeListViewController {
 private extension EmployeeListViewController {
     func setupLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] index, _ in
-            switch self?.dataSource?.snapshot().sectionIdentifiers[index] {
+            guard let section = self?.dataSource?.snapshot().sectionIdentifiers[index]
+            else { return nil }
+            
+            switch section {
             case .header:
                 return .headerLayout
             case .employees:
-                return nil
-            case .none:
-                return nil
+                return .employeeLayout
             }
         }
         collectionView.collectionViewLayout = layout
@@ -132,6 +162,21 @@ private extension NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .estimated(HeaderCell.estimatedHeight)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets.bottom = 20
+        section.contentInsetsReference = .layoutMargins
+        
+        return section
+    }
+    
+    static var employeeLayout: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(EmployeeSummaryCell.estimatedHeight)
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

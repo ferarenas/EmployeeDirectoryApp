@@ -64,11 +64,10 @@ final class HeaderCell: UICollectionViewCell {
     }
 }
 
-extension HeaderCell: Configurable {
+extension HeaderCell {
     func configure(with viewModel: HeaderCellModel) {
         titleLabel.text = viewModel.title
         firstInstructionLabel.text = viewModel.firstInstruction
         secondInstructionLabel.text = viewModel.secondInstruction
-        
     }
 }
