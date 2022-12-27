@@ -14,7 +14,9 @@ final class HeaderCell: UICollectionViewCell {
         + UIFontMetrics.default.scaledValue(for: 20)*2
     }
 
-    private let labelStackView: UIStackView = .init()
+    let titleLabel: UILabel = .init()
+    let firstInstructionLabel: UILabel = .init()
+    let secondInstructionLabel: UILabel = .init()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,8 +35,13 @@ final class HeaderCell: UICollectionViewCell {
     }
     
     private func setUpLabelStackView() {
+        let labelStackView: UIStackView = .init()
         labelStackView.axis = .vertical
         labelStackView.spacing = 10
+        
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(firstInstructionLabel)
+        labelStackView.addArrangedSubview(secondInstructionLabel)
         
         addSubview(labelStackView)
         
@@ -44,23 +51,24 @@ final class HeaderCell: UICollectionViewCell {
     }
     
     private func setUpTitleLabel() {
-        let titleLabel: UILabel = .init()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        
-        labelStackView.addArrangedSubview(titleLabel)
     }
     
     private func setUpFirstInstructionLabel() {
-        let firstInstructionLabel: UILabel = .init()
         firstInstructionLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        
-        labelStackView.addArrangedSubview(firstInstructionLabel)
     }
     
     private func setUpSecondInstructionLabel() {
-        let secondInstructionLabel: UILabel = .init()
         secondInstructionLabel.font = UIFont.boldSystemFont(ofSize: 20)
+
+    }
+}
+
+extension HeaderCell: Configurable {
+    func configure(with viewModel: HeaderCellModel) {
+        titleLabel.text = viewModel.title
+        firstInstructionLabel.text = viewModel.firstInstruction
+        secondInstructionLabel.text = viewModel.secondInstruction
         
-        labelStackView.addArrangedSubview(secondInstructionLabel)
     }
 }

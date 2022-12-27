@@ -11,13 +11,13 @@ protocol EmployeeListViewControllerViewModel: ObservableObject {
     func loadEmployees()
 }
 
-final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate
 where ViewModel: EmployeeListViewControllerViewModel {
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
 
     private enum Section: Hashable {
         case header
-        case Employees(ViewModel.EmployeeModel)
+        case employees
     }
 
     private enum Item: Hashable {
@@ -28,7 +28,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
     private let viewModel: ViewModel
     private var dataSource: DataSource?
     private var cancellables: Set<AnyCancellable> = []
-    private var collectionView: UICollectionView = .init()
+    private var collectionView: UICollectionView!
     private var onRefresh: (() async -> Void)?
     
     init(viewModel: ViewModel) {
@@ -42,15 +42,22 @@ where ViewModel: EmployeeListViewControllerViewModel {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureCollectionView()
+        setUpDataSource()
+        setupLayout()
+        updateDataSource()
+        
         setupRefresh { [weak self] in
             self?.viewModel.loadEmployees()
         }
+    }
+    
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.delegate = self
         view.addSubview(collectionView)
-        
-        view.backgroundColor = .red
-
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
     }
     
 // MARK: - Pull to refresh
@@ -69,24 +76,71 @@ where ViewModel: EmployeeListViewControllerViewModel {
             sender.endRefreshing()
         }
     }
-    
-// MARK: - DataSource
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return viewModel.employees.count
+}
+// MARK: - Data Source
+private extension EmployeeListViewController {
+    func setUpDataSource() {
+        typealias CellRegistration = UICollectionView.CellRegistration
+        
+        let headerCell = CellRegistration(for: HeaderCell.self)
+        
+        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell? in
+            switch item {
+            case let .header(item):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: headerCell,
+                    for: indexPath,
+                    item: item
+                )
+            }
         }
+        
+        self.dataSource = dataSource
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = (indexPath.section == 0) ? .red : .blue
-        return cell
+    func updateDataSource() {
+        guard var snapshot = dataSource?.snapshot() else { return }
+        defer { dataSource?.apply(snapshot, animatingDifferences: true) }
+
+        snapshot.deleteAllItems()
+
+        snapshot.appendSections([.header])
+        snapshot.appendItems([.header(viewModel.header)])
+    }
+}
+
+
+// MARK: - Layout
+private extension EmployeeListViewController {
+    func setupLayout() {
+        let layout = UICollectionViewCompositionalLayout { [weak self] index, _ in
+            switch self?.dataSource?.snapshot().sectionIdentifiers[index] {
+            case .header:
+                return .headerLayout
+            case .employees:
+                return nil
+            case .none:
+                return nil
+            }
+        }
+        collectionView.collectionViewLayout = layout
+    }
+}
+
+private extension NSCollectionLayoutSection {
+    static var headerLayout: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(HeaderCell.estimatedHeight)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets.bottom = 20
+        section.contentInsetsReference = .layoutMargins
+        
+        return section
     }
 }
 
