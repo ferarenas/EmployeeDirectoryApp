@@ -17,8 +17,8 @@ class AppCoordinator {
     
     func showEmployeeList(animated: Bool) {
 //        let viewModel = EmployeeListViewModel(urlType: .empty)
-        let viewModel = EmployeeListViewModel(urlType: .malformed)
-//        let viewModel = EmployeeListViewModel(urlType: .valid)
+//        let viewModel = EmployeeListViewModel(urlType: .malformed)
+        let viewModel = EmployeeListViewModel(urlType: .valid)
         let viewController = EmployeeListViewController(viewModel: viewModel)
         
         navigationController.pushViewController(viewController, animated: animated)
