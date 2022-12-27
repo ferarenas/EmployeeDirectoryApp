@@ -107,7 +107,6 @@
 		7D0CF7312957FAB700F1DA57 = {
 			isa = PBXGroup;
 			children = (
-				7DD4E12B295939B600B522C2 /* Tests */,
 				7D0CF73C2957FAB700F1DA57 /* EmployeeDirectoryApp */,
 				7D0CF7532957FAB800F1DA57 /* EmployeeDirectoryAppTests */,
 				7D0CF75D2957FAB800F1DA57 /* EmployeeDirectoryAppUITests */,
@@ -181,6 +180,7 @@
 		7D8148FB295805D300B0C6C1 /* EmployeeDirectoryManagement */ = {
 			isa = PBXGroup;
 			children = (
+				7DD4E12B295939B600B522C2 /* Tests */,
 				7D8148FC295805EC00B0C6C1 /* Sources */,
 			);
 			path = EmployeeDirectoryManagement;
@@ -189,6 +189,7 @@
 		7D8148FC295805EC00B0C6C1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */,
 				7D8148FE2958060F00B0C6C1 /* Resources */,
 				7D8148FD2958060900B0C6C1 /* UI */,
 			);
@@ -199,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				7DD4E1102958C6AD00B522C2 /* EmployeeList */,
-				7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -215,14 +215,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		7D82D3E1295ABD5A006BEE57 /* Cell Models */ = {
+			isa = PBXGroup;
+			children = (
+				7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift */,
+				7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */,
+			);
+			path = "Cell Models";
+			sourceTree = "<group>";
+		};
 		7DD4E1102958C6AD00B522C2 /* EmployeeList */ = {
 			isa = PBXGroup;
 			children = (
-				7DD4E1112958C6BB00B522C2 /* Cells */,
 				7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */,
 				7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */,
-				7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */,
-				7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift */,
+				7D82D3E1295ABD5A006BEE57 /* Cell Models */,
+				7DD4E1112958C6BB00B522C2 /* Cells */,
 			);
 			path = EmployeeList;
 			sourceTree = "<group>";
