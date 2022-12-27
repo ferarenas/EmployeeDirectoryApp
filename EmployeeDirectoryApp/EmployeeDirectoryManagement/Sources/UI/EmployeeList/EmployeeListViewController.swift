@@ -48,10 +48,10 @@ where ViewModel: EmployeeListViewControllerViewModel {
         configureCollectionView()
         bindToViewModel()
         setUpDataSource()
-        setupLayout()
+        setUpLayout()
         updateDataSource()
         
-        setupRefresh { [weak self] in
+        setUpRefresh { [weak self] in
             self?.viewModel.loadEmployees()
         }
     }
@@ -75,7 +75,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
     }
     
 // MARK: - Pull to refresh
-    func setupRefresh(onRefresh: @escaping () async -> Void) {
+    func setUpRefresh(onRefresh: @escaping () async -> Void) {
         collectionView.alwaysBounceVertical = true
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.backgroundColor = .clear
@@ -154,7 +154,7 @@ private extension EmployeeListViewController {
 
 // MARK: - Layout
 private extension EmployeeListViewController {
-    func setupLayout() {
+    func setUpLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] index, _ in
             guard let section = self?.dataSource?.snapshot().sectionIdentifiers[index]
             else { return nil }

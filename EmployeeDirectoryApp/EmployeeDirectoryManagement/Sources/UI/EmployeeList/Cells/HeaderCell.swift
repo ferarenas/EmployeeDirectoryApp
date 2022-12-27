@@ -21,10 +21,10 @@ final class HeaderCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubviews()
+        setUpSubviews()
     }
     
-    private func setupSubviews() {
+    private func setUpSubviews() {
         setUpLabelStackView()
         setUpTitleLabel()
         setUpSubTitleLabel()
