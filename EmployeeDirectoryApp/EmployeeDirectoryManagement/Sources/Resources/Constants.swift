@@ -12,7 +12,12 @@ enum L10n {
     enum EmployeeList {
         static let title = "Employee Directory App"
         static let subtitle = "Pull to refresh list"
+        internal enum Alert {
+            static let title = "Decoding Error"
+            static let button = "Dismiss"
+        }
     }
+    
 }
 
 //MARK: - Spacing
@@ -22,4 +27,5 @@ enum Spacing {
     public static let medium: CGFloat = 20
     public static let large: CGFloat = 24
     public static let extraLarge: CGFloat = 28
+    public static let huge: CGFloat = 60
 }

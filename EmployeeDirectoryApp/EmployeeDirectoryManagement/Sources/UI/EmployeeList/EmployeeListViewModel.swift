@@ -3,9 +3,12 @@ import Combine
 
 final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     private typealias Strings = L10n.EmployeeList
-    let header: HeaderCellModel
     
+    let header: HeaderCellModel
     @Published var employees: [EmployeeSummaryCellModel] = []
+    
+    var errorSubject: PassthroughSubject<Error, Never> = .init()
+    var error: AnyPublisher<Error, Never> { errorSubject.eraseToAnyPublisher() }
     
     private let url: URL
     
@@ -21,10 +24,13 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     func loadEmployees() {
         Task {
             do {
-                let employeeList: EmployeeList = try await EmployeeDirectoryAPIService().getEmployeeList(url: url)
-                employees = employeeList.employees.compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
+                let employeeList: EmployeeList = try await
+                EmployeeDirectoryAPIService().getEmployeeList(url: url)
+                employees = employeeList
+                    .employees
+                    .compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
             } catch {
-                print(error)
+                errorSubject.send(error)
             }
         }
     }
