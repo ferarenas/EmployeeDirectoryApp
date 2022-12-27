@@ -6,14 +6,13 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     let header: HeaderCellModel
     
     @Published var employees: [EmployeeSummaryCellModel] = []
-    @Published var isLoading: Bool = false
     
     private let url: URL
     
     init(urlType: urlTypes) {
         self.header = .init(
-            title: Strings.employeeListTitle,
-            firstInstruction: Strings.firstTitle
+            title: Strings.title,
+            subTitle: Strings.subtitle
         )
         self.url = URL(string: urlType.rawValue)!
         loadEmployees()
@@ -24,9 +23,7 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
             do {
                 let employeeList: EmployeeList = try await EmployeeDirectoryAPIService().getEmployeeList(url: url)
                 employees = employeeList.employees.compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
-                isLoading = false
             } catch {
-                isLoading = false
                 print(error)
             }
         }

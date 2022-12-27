@@ -3,10 +3,10 @@ import Combine
 
 protocol EmployeeListViewControllerViewModel: ObservableObject {
     associatedtype EmployeeSummaryCellModel: EmployeeSummaryCellViewModel, Hashable
+    associatedtype HeaderCellModel: HeaderCellViewModel, Hashable
     
     var header: HeaderCellModel { get }
     var employees: [EmployeeSummaryCellModel] { get }
-    var isLoading: Bool { get }
     
     func loadEmployees()
 }
@@ -21,7 +21,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
     }
 
     private enum Item: Hashable {
-        case header(HeaderCellModel)
+        case header(ViewModel.HeaderCellModel)
         case employeeSummary(ViewModel.EmployeeSummaryCellModel)
     }
 
@@ -44,11 +44,10 @@ where ViewModel: EmployeeListViewControllerViewModel {
         super.viewDidLoad()
         
         configureCollectionView()
+        bindToViewModel()
         setUpDataSource()
         setupLayout()
         updateDataSource()
-        bindToViewModel()
-        
         
         setupRefresh { [weak self] in
             self?.viewModel.loadEmployees()
@@ -57,8 +56,8 @@ where ViewModel: EmployeeListViewControllerViewModel {
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.delegate = self
+        
         view.addSubview(collectionView)
     }
     
@@ -94,11 +93,11 @@ private extension EmployeeListViewController {
     func setUpDataSource() {
         typealias CellRegistration = UICollectionView.CellRegistration
         
-        let headerCell = CellRegistration<HeaderCell, HeaderCellModel> { cell, _, item in
+        let headerCell = CellRegistration<HeaderCell, ViewModel.HeaderCellModel> { cell, _, item in
             cell.configure(with: item)
         }
         
-        let employeeCell = CellRegistration<EmployeeSummaryCell, EmployeeSummaryCellViewModel> { cell, _, item in
+        let employeeCell = CellRegistration<EmployeeSummaryCell, ViewModel.EmployeeSummaryCellModel> { cell, _, item in
             cell.configure(with: item)
         }
         
@@ -118,7 +117,6 @@ private extension EmployeeListViewController {
                 )
             }
         }
-        
         self.dataSource = dataSource
     }
     
@@ -138,7 +136,6 @@ private extension EmployeeListViewController {
     }
 }
 
-
 // MARK: - Layout
 private extension EmployeeListViewController {
     func setupLayout() {
@@ -148,9 +145,9 @@ private extension EmployeeListViewController {
             
             switch section {
             case .header:
-                return .headerLayout
+                return .defaultLayout(height: HeaderCell.estimatedHeight)
             case .employees:
-                return .employeeLayout
+                return .defaultLayout(height: EmployeeSummaryCell.estimatedHeight)
             }
         }
         collectionView.collectionViewLayout = layout
@@ -158,25 +155,10 @@ private extension EmployeeListViewController {
 }
 
 private extension NSCollectionLayoutSection {
-    static var headerLayout: NSCollectionLayoutSection {
+    static func defaultLayout(height: Double) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(HeaderCell.estimatedHeight)
-        )
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets.bottom = 20
-        section.contentInsetsReference = .layoutMargins
-        
-        return section
-    }
-    
-    static var employeeLayout: NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(EmployeeSummaryCell.estimatedHeight)
+            heightDimension: .estimated(height)
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -188,4 +170,3 @@ private extension NSCollectionLayoutSection {
         return section
     }
 }
-

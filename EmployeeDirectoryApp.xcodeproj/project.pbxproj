@@ -22,7 +22,7 @@
 		7DD4E1162958CD7F00B522C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E1152958CD7F00B522C2 /* SnapKit */; };
 		7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */; };
 		7DD4E11B2958D27A00B522C2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E11A2958D27A00B522C2 /* Kingfisher */; };
-		7DD4E11F2958E4A700B522C2 /* HeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */; };
+		7DD4E11F2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */; };
 		7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */; };
 		7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift */; };
 		7DD4E1272959133100B522C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1262959133100B522C2 /* Constants.swift */; };
@@ -67,7 +67,7 @@
 		7D82D3DF295A935C006BEE57 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSummaryCell.swift; sourceTree = "<group>"; };
-		7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCellModel.swift; sourceTree = "<group>"; };
+		7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewModel+HeaderCellModel.swift"; sourceTree = "<group>"; };
 		7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewModel.swift; sourceTree = "<group>"; };
 		7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewModel+EmployeeSummaryCellModel.swift"; sourceTree = "<group>"; };
 		7DD4E1262959133100B522C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -221,6 +221,7 @@
 				7DD4E1112958C6BB00B522C2 /* Cells */,
 				7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */,
 				7DD4E1222958F5C600B522C2 /* EmployeeListViewModel.swift */,
+				7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */,
 				7DD4E1242958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift */,
 			);
 			path = EmployeeList;
@@ -231,7 +232,6 @@
 			children = (
 				7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */,
 				7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */,
-				7DD4E11E2958E4A700B522C2 /* HeaderCellModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */,
 				7D0CF73E2957FAB700F1DA57 /* AppDelegate.swift in Sources */,
 				7D82D3E0295A935C006BEE57 /* Utilities.swift in Sources */,
-				7DD4E11F2958E4A700B522C2 /* HeaderCellModel.swift in Sources */,
+				7DD4E11F2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift in Sources */,
 				7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift in Sources */,
 				7D8148F52958003500B0C6C1 /* EmployeeDirectoryAPIService.swift in Sources */,
 				7D8148F62958003500B0C6C1 /* Employee.swift in Sources */,

@@ -3,17 +3,17 @@ import SnapKit
 
 protocol HeaderCellViewModel {
     var title: String { get }
-    var firstInstruction: String { get }
+    var subTitle: String { get }
 }
 
 final class HeaderCell: UICollectionViewCell {
     static var estimatedHeight: Double {
         UIFontMetrics.default.scaledValue(for: Spacing.extraLarge)
-        + UIFontMetrics.default.scaledValue(for: Spacing.medium)*2
+        + UIFontMetrics.default.scaledValue(for: Spacing.small)
     }
 
     let titleLabel: UILabel = .init()
-    let firstInstructionLabel: UILabel = .init()
+    let subtitleLabel: UILabel = .init()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -27,7 +27,7 @@ final class HeaderCell: UICollectionViewCell {
     private func setupSubviews() {
         setUpLabelStackView()
         setUpTitleLabel()
-        setUpFirstInstructionLabel()
+        setUpSubTitleLabel()
     }
     
     private func setUpLabelStackView() {
@@ -37,7 +37,7 @@ final class HeaderCell: UICollectionViewCell {
         labelStackView.spacing = Spacing.extraSmall
         
         labelStackView.addArrangedSubview(titleLabel)
-        labelStackView.addArrangedSubview(firstInstructionLabel)
+        labelStackView.addArrangedSubview(subtitleLabel)
         
         addSubview(labelStackView)
         
@@ -51,14 +51,14 @@ final class HeaderCell: UICollectionViewCell {
         titleLabel.numberOfLines = 0
     }
     
-    private func setUpFirstInstructionLabel() {
-        firstInstructionLabel.font = UIFont.boldSystemFont(ofSize: Spacing.small)
+    private func setUpSubTitleLabel() {
+        subtitleLabel.font = UIFont.boldSystemFont(ofSize: Spacing.small)
     }
 }
 
 extension HeaderCell {
-    func configure(with viewModel: HeaderCellModel) {
+    func configure(with viewModel: HeaderCellViewModel) {
         titleLabel.text = viewModel.title
-        firstInstructionLabel.text = viewModel.firstInstruction
+        subtitleLabel.text = viewModel.subTitle
     }
 }

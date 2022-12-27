@@ -11,14 +11,14 @@ protocol EmployeeSummaryCellViewModel {
 
 final class EmployeeSummaryCell: UICollectionViewCell {
     static var estimatedHeight: Double {
-        UIFontMetrics.default.scaledValue(for: 20)
-        + UIFontMetrics.default.scaledValue(for: 18)
+        UIFontMetrics.default.scaledValue(for: Spacing.small)
+        + UIFontMetrics.default.scaledValue(for: Spacing.extraSmall)
     }
     
     private let employeePhoto: UIImageView = .init()
+    private let labelStackView: UIStackView = .init()
     private let nameLabel: UILabel = .init()
     private let teamLabel: UILabel = .init()
-    private let labelStackView: UIStackView = .init()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -65,7 +65,6 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     private func setUpTeamLabel() {
         teamLabel.font = UIFont.boldSystemFont(ofSize: Spacing.extraSmall)
     }
-    
 }
 
 extension EmployeeSummaryCell {

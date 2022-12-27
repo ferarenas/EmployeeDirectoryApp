@@ -10,8 +10,8 @@ enum urlTypes: String {
 //MARK: - Strings
 enum L10n {
     enum EmployeeList {
-        static let employeeListTitle = "Employee Directory App"
-        static let firstTitle = "Pull to refresh list"
+        static let title = "Employee Directory App"
+        static let subtitle = "Pull to refresh list"
     }
 }
 
