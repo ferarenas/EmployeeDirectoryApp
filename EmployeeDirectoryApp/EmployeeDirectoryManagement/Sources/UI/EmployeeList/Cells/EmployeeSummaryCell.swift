@@ -32,6 +32,7 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     private func setupSubviews() {
         setUpCellStackView()
         setUpLabelStackView()
+        setUpEmployeePhoto()
         setUpNameLabel()
         setUpTeamLabel()
     }
@@ -39,6 +40,7 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     private func setUpCellStackView() {
         let cellStackView: UIStackView = .init()
         cellStackView.axis = .horizontal
+        cellStackView.spacing = Spacing.extraSmall
         
         cellStackView.addArrangedSubview(employeePhoto)
         cellStackView.addArrangedSubview(labelStackView)
@@ -53,17 +55,24 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     private func setUpLabelStackView() {
         labelStackView.axis = .vertical
         labelStackView.spacing = Spacing.extraSmall
+        labelStackView.alignment = .leading
         
         labelStackView.addArrangedSubview(nameLabel)
         labelStackView.addArrangedSubview(teamLabel)
     }
     
+    private func setUpEmployeePhoto() {
+        employeePhoto.snp.makeConstraints { make in
+            make.size.equalTo(Spacing.huge)
+        }
+    }
+    
     private func setUpNameLabel() {
-        nameLabel.font = UIFont.boldSystemFont(ofSize: Spacing.small)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: Spacing.medium)
     }
     
     private func setUpTeamLabel() {
-        teamLabel.font = UIFont.boldSystemFont(ofSize: Spacing.extraSmall)
+        teamLabel.font = UIFont.boldSystemFont(ofSize: Spacing.small)
     }
 }
 
@@ -71,6 +80,7 @@ extension EmployeeSummaryCell {
     func configure(with viewModel: EmployeeSummaryCellViewModel) {
         nameLabel.text = viewModel.name
         teamLabel.text = viewModel.team
+        employeePhoto.kf.setImage(with: viewModel.imageUrl)
     }
 }
 

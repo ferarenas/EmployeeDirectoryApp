@@ -7,12 +7,14 @@ protocol EmployeeListViewControllerViewModel: ObservableObject {
     
     var header: HeaderCellModel { get }
     var employees: [EmployeeSummaryCellModel] { get }
+    var error: AnyPublisher<Error, Never> { get }
     
     func loadEmployees()
 }
 
 final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate
 where ViewModel: EmployeeListViewControllerViewModel {
+    private typealias Strings = L10n.EmployeeList.Alert
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
 
     private enum Section: Hashable {
@@ -69,6 +71,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
                 .eraseToAnyPublisher()
                 .sink{ [weak self] _ in self?.updateDataSource() }
         )
+        cancellables.insert(viewModel.error.sink { [weak self] in self?.handleError($0)} )
     }
     
 // MARK: - Pull to refresh
@@ -85,6 +88,19 @@ where ViewModel: EmployeeListViewControllerViewModel {
         Task {
             await onRefresh?()
             sender.endRefreshing()
+        }
+    }
+    
+    func handleError(_ error: Error) {
+        let alert = UIAlertController(
+            title: Strings.title,
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: Strings.button, style: .default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.async { () -> Void in
+              self.present(alert, animated: true)
         }
     }
 }
