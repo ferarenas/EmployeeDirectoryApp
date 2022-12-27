@@ -51,14 +51,16 @@ where ViewModel: EmployeeListViewControllerViewModel {
         setUpLayout()
         updateDataSource()
         viewModel.loadEmployees()
-        
         setUpRefresh { [weak self] in
             self?.viewModel.loadEmployees()
         }
     }
     
     func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewLayout())
+        collectionView = UICollectionView(
+            frame: view.bounds,
+            collectionViewLayout: UICollectionViewLayout()
+        )
         collectionView.delegate = self
         
         view.addSubview(collectionView)
@@ -80,7 +82,11 @@ where ViewModel: EmployeeListViewControllerViewModel {
         collectionView.alwaysBounceVertical = true
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.backgroundColor = .clear
-        collectionView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        collectionView.refreshControl?.addTarget(
+            self,
+            action: #selector(didPullToRefresh),
+            for: .valueChanged
+        )
         self.onRefresh = onRefresh
     }
 
@@ -100,8 +106,8 @@ where ViewModel: EmployeeListViewControllerViewModel {
         )
         let okAction = UIAlertAction(title: Strings.button, style: .default, handler: nil)
         alert.addAction(okAction)
-        DispatchQueue.main.async { () -> Void in
-              self.present(alert, animated: true)
+        DispatchQueue.main.async { [weak self] () -> Void in
+              self?.present(alert, animated: true)
         }
     }
 }
@@ -114,11 +120,13 @@ private extension EmployeeListViewController {
             cell.configure(with: item)
         }
         
-        let employeeCell = CellRegistration<EmployeeSummaryCell, ViewModel.EmployeeSummaryCellModel> { cell, _, item in
+        let employeeCell = CellRegistration<EmployeeSummaryCell, ViewModel.EmployeeSummaryCellModel> {
+            cell, _, item in
             cell.configure(with: item)
         }
         
-        let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell? in
+        let dataSource = DataSource(collectionView: collectionView) {
+            collectionView, indexPath, item -> UICollectionViewCell? in
             switch item {
             case let .header(item):
                 return collectionView.dequeueConfiguredReusableCell(
@@ -134,6 +142,7 @@ private extension EmployeeListViewController {
                 )
             }
         }
+        
         self.dataSource = dataSource
     }
     
