@@ -16,10 +16,8 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     }
     
     private let employeePhoto: UIImageView = .init()
-    private let cellStackView: UIStackView = .init()
     private let nameLabel: UILabel = .init()
     private let teamLabel: UILabel = .init()
-    
     private let labelStackView: UIStackView = .init()
     
     required init?(coder: NSCoder) {
@@ -34,12 +32,14 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     private func setupSubviews() {
         setUpCellStackView()
         setUpLabelStackView()
-        setUpEmployeeName()
-        setUpEmployeeTeam()
+        setUpNameLabel()
+        setUpTeamLabel()
     }
     
     private func setUpCellStackView() {
+        let cellStackView: UIStackView = .init()
         cellStackView.axis = .horizontal
+        
         cellStackView.addArrangedSubview(employeePhoto)
         cellStackView.addArrangedSubview(labelStackView)
         
@@ -52,22 +52,18 @@ final class EmployeeSummaryCell: UICollectionViewCell {
     
     private func setUpLabelStackView() {
         labelStackView.axis = .vertical
-        labelStackView.spacing = 10
-        
-        cellStackView.addArrangedSubview(labelStackView)
-    }
-    
-    private func setUpEmployeeName() {
-        
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        labelStackView.spacing = Spacing.extraSmall
         
         labelStackView.addArrangedSubview(nameLabel)
+        labelStackView.addArrangedSubview(teamLabel)
     }
     
-    private func setUpEmployeeTeam() {
-        teamLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        
-        labelStackView.addArrangedSubview(teamLabel)
+    private func setUpNameLabel() {
+        nameLabel.font = UIFont.boldSystemFont(ofSize: Spacing.small)
+    }
+    
+    private func setUpTeamLabel() {
+        teamLabel.font = UIFont.boldSystemFont(ofSize: Spacing.extraSmall)
     }
     
 }

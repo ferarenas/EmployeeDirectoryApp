@@ -1,8 +1,7 @@
 import Foundation
 
 extension EmployeeListViewModel {
-    struct EmployeeModel: EmployeeSummaryCellViewModel, Hashable {
-        
+    struct EmployeeSummaryCellModel: EmployeeSummaryCellViewModel, Hashable {
         let imageUrl: URL
         var name: String { employee.fullName }
         var team: String { employee.team }

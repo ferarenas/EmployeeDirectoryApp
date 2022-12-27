@@ -2,10 +2,10 @@ import UIKit
 import Combine
 
 protocol EmployeeListViewControllerViewModel: ObservableObject {
-    associatedtype EmployeeModel: EmployeeSummaryCellViewModel, Hashable
+    associatedtype EmployeeSummaryCellModel: EmployeeSummaryCellViewModel, Hashable
     
     var header: HeaderCellModel { get }
-    var employees: [EmployeeModel] { get }
+    var employees: [EmployeeSummaryCellModel] { get }
     var isLoading: Bool { get }
     
     func loadEmployees()
@@ -22,7 +22,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
 
     private enum Item: Hashable {
         case header(HeaderCellModel)
-        case employeeSummary(ViewModel.EmployeeModel)
+        case employeeSummary(ViewModel.EmployeeSummaryCellModel)
     }
 
     private let viewModel: ViewModel
