@@ -3,20 +3,20 @@ import Combine
 
 final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     private typealias Strings = L10n.EmployeeList
+    typealias EmployeesPublisher = AnyPublisher<[EmployeeSummaryCellModel], Never>
     
     let header: HeaderCellModel
-    @Published private(set) var employees: [EmployeeSummaryCellModel] = []
-    @Published private(set) var isLoading = false
-    
+    private(set) lazy var employeesPublisher: EmployeesPublisher = $employees.eraseToAnyPublisher()
     private(set) lazy var errorPublisher: AnyPublisher<Error, Never> = errorSubject.eraseToAnyPublisher()
-    private(set) lazy var employeesPublisher: AnyPublisher<[EmployeeSummaryCellModel], Never> = $employees.eraseToAnyPublisher()
     private(set) lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = $isLoading.eraseToAnyPublisher()
     
+    @Published private(set) var employees: [EmployeeSummaryCellModel] = []
+    @Published private(set) var isLoading = false
     private var errorSubject: PassthroughSubject<Error, Never> = .init()
     private let url: URL
-    private let service: GetEmployeesServiceProtocol
+    private let service: GetEmployeesAPIService
     
-    init(service: GetEmployeesServiceProtocol, urlType: UrlTypes) {
+    init(service: GetEmployeesAPIService, urlType: UrlTypes) {
         self.service = service
         self.header = .init(
             title: Strings.title,
@@ -26,10 +26,7 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     }
     
     func loadEmployees() async {
-        defer {
-            isLoading = false
-        }
-        
+        defer { isLoading = false }
         do {
             isLoading = true
             let employeeList = try await service.getEmployeeList(url: url)

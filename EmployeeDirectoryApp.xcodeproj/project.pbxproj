@@ -17,7 +17,6 @@
 		7D8148F62958003500B0C6C1 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148F32958003500B0C6C1 /* Employee.swift */; };
 		7D814900295807DB00B0C6C1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */; };
 		7D814904295809DF00B0C6C1 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */; };
-		7D82D3E0295A935C006BEE57 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D82D3DF295A935C006BEE57 /* Utilities.swift */; };
 		7DD4E1132958C7FD00B522C2 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */; };
 		7DD4E1162958CD7F00B522C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E1152958CD7F00B522C2 /* SnapKit */; };
 		7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */; };
@@ -31,6 +30,8 @@
 		7DD4E13B29593EE800B522C2 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E13A29593EE800B522C2 /* Nimble */; };
 		7DD4E13E29593F0800B522C2 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 7DD4E13D29593F0800B522C2 /* SnapshotTesting */; };
 		7DECC87C295BD3D000F1F3FC /* Employee+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DECC87B295BD3D000F1F3FC /* Employee+Test.swift */; };
+		7DECC87F295BE30200F1F3FC /* UIActivityIndicatorView+animating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DECC87E295BE30200F1F3FC /* UIActivityIndicatorView+animating.swift */; };
+		7DECC881295BE52700F1F3FC /* GetEmployeesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DECC880295BE52700F1F3FC /* GetEmployeesAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +66,6 @@
 		7D8148F32958003500B0C6C1 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7D814903295809DF00B0C6C1 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
-		7D82D3DF295A935C006BEE57 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7DD4E1122958C7FD00B522C2 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7DD4E1172958D07C00B522C2 /* EmployeeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSummaryCell.swift; sourceTree = "<group>"; };
 		7DD4E11E2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeListViewModel+HeaderCellModel.swift"; sourceTree = "<group>"; };
@@ -74,6 +74,8 @@
 		7DD4E1262959133100B522C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DD4E12E29593A1F00B522C2 /* EmployeeListViewController.spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.spec.swift; sourceTree = "<group>"; };
 		7DECC87B295BD3D000F1F3FC /* Employee+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+Test.swift"; sourceTree = "<group>"; };
+		7DECC87E295BE30200F1F3FC /* UIActivityIndicatorView+animating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+animating.swift"; sourceTree = "<group>"; };
+		7DECC880295BE52700F1F3FC /* GetEmployeesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEmployeesAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +134,6 @@
 				7D8148FB295805D300B0C6C1 /* EmployeeDirectoryManagement */,
 				7D8148EE2958001700B0C6C1 /* EmployeeDirectoryKit */,
 				7D0CF74B2957FAB800F1DA57 /* Info.plist */,
-				7D82D3DF295A935C006BEE57 /* Utilities.swift */,
 			);
 			path = EmployeeDirectoryApp;
 			sourceTree = "<group>";
@@ -167,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8148F12958003500B0C6C1 /* APIService.swift */,
+				7DECC880295BE52700F1F3FC /* GetEmployeesAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8148FF295807DB00B0C6C1 /* AppCoordinator.swift */,
+				7DECC87D295BE2E300F1F3FC /* Extensions */,
 				7D8148FE2958060F00B0C6C1 /* Resources */,
 				7D8148FD2958060900B0C6C1 /* UI */,
 			);
@@ -269,6 +272,14 @@
 				7DD4E12E29593A1F00B522C2 /* EmployeeListViewController.spec.swift */,
 			);
 			path = EmployeeList;
+			sourceTree = "<group>";
+		};
+		7DECC87D295BE2E300F1F3FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DECC87E295BE30200F1F3FC /* UIActivityIndicatorView+animating.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,13 +429,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D814904295809DF00B0C6C1 /* EmployeeListViewController.swift in Sources */,
+				7DECC881295BE52700F1F3FC /* GetEmployeesAPIService.swift in Sources */,
 				7DD4E1272959133100B522C2 /* Constants.swift in Sources */,
 				7DD4E1232958F5C600B522C2 /* EmployeeListViewModel.swift in Sources */,
 				7D814900295807DB00B0C6C1 /* AppCoordinator.swift in Sources */,
 				7DECC87C295BD3D000F1F3FC /* Employee+Test.swift in Sources */,
 				7DD4E1182958D07C00B522C2 /* EmployeeSummaryCell.swift in Sources */,
 				7D0CF73E2957FAB700F1DA57 /* AppDelegate.swift in Sources */,
-				7D82D3E0295A935C006BEE57 /* Utilities.swift in Sources */,
+				7DECC87F295BE30200F1F3FC /* UIActivityIndicatorView+animating.swift in Sources */,
 				7DD4E11F2958E4A700B522C2 /* EmployeeListViewModel+HeaderCellModel.swift in Sources */,
 				7DD4E1252958F62E00B522C2 /* EmployeeListViewModel+EmployeeSummaryCellModel.swift in Sources */,
 				7D8148F52958003500B0C6C1 /* APIService.swift in Sources */,

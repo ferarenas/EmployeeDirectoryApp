@@ -1,9 +1,5 @@
 import Foundation
 
-protocol GetEmployeesServiceProtocol {
-    func getEmployeeList(url: URL) async throws -> EmployeeList
-}
-
 public class APIService {
     static let shared: APIService = .init(jsonDecoder: .init())
     
@@ -21,13 +17,4 @@ public class APIService {
         
         return decodedObject
     }
-}
-
-
-public class GetEmployeesService: GetEmployeesServiceProtocol {
-    
-    func getEmployeeList(url: URL) async throws -> EmployeeList {
-        return try await APIService.shared.get(url: url)
-    }
-    
 }

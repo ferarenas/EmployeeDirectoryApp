@@ -16,6 +16,7 @@ enum L10n {
             static let title = "Decoding Error"
             static let button = "Dismiss"
         }
+        static let emptyListTitle = "No Employees Found"
     }
     
 }

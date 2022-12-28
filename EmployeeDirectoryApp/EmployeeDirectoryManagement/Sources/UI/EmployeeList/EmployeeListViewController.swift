@@ -13,21 +13,9 @@ protocol EmployeeListViewControllerViewModel: ObservableObject {
     func loadEmployees() async
 }
 
-extension UIActivityIndicatorView {
-    /// For easy binding
-    var animating: Bool {
-        get { isAnimating }
-        set {
-            newValue ? startAnimating() : stopAnimating()
-        }
-    }
-    
-}
-
 final class EmployeeListViewController<ViewModel>: UIViewController, UICollectionViewDelegate
 where ViewModel: EmployeeListViewControllerViewModel {
-    
-    private typealias Strings = L10n.EmployeeList.Alert
+    private typealias Strings = L10n.EmployeeList
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
 
@@ -79,16 +67,15 @@ where ViewModel: EmployeeListViewControllerViewModel {
     }
     
     func bindToViewModel() {
-        
         viewModel
             .employeesPublisher
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [weak self] employees in
                 if employees.isEmpty {
-                    let lbl = UILabel()
-                    lbl.text = "No employee found"
-                    lbl.textAlignment = .center
-                    self?.collectionView.backgroundView = lbl
+                    let label = UILabel()
+                    label.text = Strings.emptyListTitle
+                    label.textAlignment = .center
+                    self?.collectionView.backgroundView = label
                 } else {
                     self?.collectionView.backgroundView = nil
                 }
@@ -104,17 +91,27 @@ where ViewModel: EmployeeListViewControllerViewModel {
             .sink { [weak self] in self?.handleError($0) }
             .store(in: &cancellables)
         
-        let spinner = UIActivityIndicatorView(style: .large)
-        
         viewModel.isLoadingPublisher
             .receive(on: DispatchQueue.main)
-            .assign(to: \.animating, on: spinner)
+            .assign(to: \.animating, on: UIActivityIndicatorView(style: .large))
             .store(in: &cancellables)
         
     }
     
-    // MARK: - Pull to refresh
+    func handleError(_ error: Error) {
+        let alert = UIAlertController(
+            title: Strings.Alert.title,
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: Strings.Alert.button, style: .default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.async { [weak self] () -> Void in
+              self?.present(alert, animated: true)
+        }
+    }
     
+    // MARK: - Pull to refresh
     func setUpRefresh() {
         collectionView.alwaysBounceVertical = true
         collectionView.refreshControl = UIRefreshControl()
@@ -134,25 +131,10 @@ where ViewModel: EmployeeListViewControllerViewModel {
             sender.endRefreshing()
         }
     }
-    
-    func handleError(_ error: Error) {
-        let alert = UIAlertController(
-            title: Strings.title,
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: Strings.button, style: .default, handler: nil)
-        alert.addAction(okAction)
-        DispatchQueue.main.async { [weak self] () -> Void in
-              self?.present(alert, animated: true)
-        }
-    }
 }
 
 // MARK: - Data Source
-
 private extension EmployeeListViewController {
-    
     private func setUpDataSource() -> DataSource {
         typealias CellRegistration = UICollectionView.CellRegistration
         
@@ -182,7 +164,6 @@ private extension EmployeeListViewController {
                 )
             }
         }
-        
         return dataSource
     }
     
@@ -197,26 +178,10 @@ private extension EmployeeListViewController {
         
         return snapshot
     }
-    
-//    func updateDataSource() {
-//        var snapshot = Snapshot()
-//
-//        snapshot.appendSections([.header])
-//        snapshot.appendItems([.header(viewModel.header)])
-//
-//        if !viewModel.employees.isEmpty {
-//            snapshot.appendSections([.employees])
-//            snapshot.appendItems(viewModel.employees.map(Item.employeeSummary))
-//        }
-//
-//        dataSource.apply(snapshot, animatingDifferences: true)
-//    }
 }
 
 // MARK: - Layout
-
 private extension EmployeeListViewController {
-    
     func setUpLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] index, _ in
             guard let section = self?.dataSource.snapshot().sectionIdentifiers[index]
@@ -234,7 +199,6 @@ private extension EmployeeListViewController {
 }
 
 private extension NSCollectionLayoutSection {
-    
     static func defaultLayout(height: Double) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
