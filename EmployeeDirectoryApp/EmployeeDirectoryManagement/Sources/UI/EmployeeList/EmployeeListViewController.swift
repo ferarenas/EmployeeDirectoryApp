@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-protocol EmployeeListViewControllerViewModel: ObservableObject {
+protocol EmployeeListViewControllerViewModel {
     associatedtype EmployeeSummaryCellModel: EmployeeSummaryCellViewModel, Hashable
     associatedtype HeaderCellModel: HeaderCellViewModel, Hashable
     
@@ -81,9 +81,7 @@ where ViewModel: EmployeeListViewControllerViewModel {
                 }
             })
             .compactMap{ [weak self] in self?.makeSnapshot(employees: $0) }
-            .sink { [weak self] in
-                self?.dataSource.apply($0, animatingDifferences: true)
-            }
+            .sink { [weak self] in self?.dataSource.apply($0, animatingDifferences: true) }
             .store(in: &cancellables)
         
         viewModel.errorPublisher

@@ -6,12 +6,12 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     typealias EmployeesPublisher = AnyPublisher<[EmployeeSummaryCellModel], Never>
     
     let header: HeaderCellModel
-    private(set) lazy var employeesPublisher: EmployeesPublisher = $employees.eraseToAnyPublisher()
+    private(set) lazy var employeesPublisher: EmployeesPublisher = employeesSubject.eraseToAnyPublisher()
     private(set) lazy var errorPublisher: AnyPublisher<Error, Never> = errorSubject.eraseToAnyPublisher()
-    private(set) lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = $isLoading.eraseToAnyPublisher()
+    private(set) lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = isLoading.eraseToAnyPublisher()
     
-    @Published private(set) var employees: [EmployeeSummaryCellModel] = []
-    @Published private(set) var isLoading = false
+    private var employeesSubject: PassthroughSubject<[EmployeeSummaryCellModel], Never> = .init()
+    private var isLoading: CurrentValueSubject<Bool, Never> = .init(false)
     private var errorSubject: PassthroughSubject<Error, Never> = .init()
     private let url: URL
     private let service: GetEmployeesAPIService
@@ -26,14 +26,19 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     }
     
     func loadEmployees() async {
-        defer { isLoading = false }
+        defer { isLoading.send(false) }
         do {
-            isLoading = true
+            isLoading.send(true)
+            
             let employeeList = try await service.getEmployeeList(url: url)
             
-            employees = employeeList
-                .employees
-                .compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
+            employeesSubject
+                .send(
+                    employeeList
+                        .employees
+                        .compactMap(EmployeeSummaryCellModel.init)
+                        .sorted { $0.name < $1.name }
+                )
         } catch {
             errorSubject.send(error)
         }
