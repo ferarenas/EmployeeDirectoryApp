@@ -6,12 +6,18 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
     
     let header: HeaderCellModel
     @Published private(set) var employees: [EmployeeSummaryCellModel] = []
-    var error: AnyPublisher<Error, Never> { errorSubject.eraseToAnyPublisher() }
+    @Published private(set) var isLoading = false
+    
+    private(set) lazy var errorPublisher: AnyPublisher<Error, Never> = errorSubject.eraseToAnyPublisher()
+    private(set) lazy var employeesPublisher: AnyPublisher<[EmployeeSummaryCellModel], Never> = $employees.eraseToAnyPublisher()
+    private(set) lazy var isLoadingPublisher: AnyPublisher<Bool, Never> = $isLoading.eraseToAnyPublisher()
     
     private var errorSubject: PassthroughSubject<Error, Never> = .init()
     private let url: URL
+    private let service: GetEmployeesServiceProtocol
     
-    init(urlType: urlTypes) {
+    init(service: GetEmployeesServiceProtocol, urlType: UrlTypes) {
+        self.service = service
         self.header = .init(
             title: Strings.title,
             subTitle: Strings.subtitle
@@ -19,17 +25,20 @@ final class EmployeeListViewModel: EmployeeListViewControllerViewModel {
         self.url = URL(string: urlType.rawValue)!
     }
     
-    func loadEmployees() {
-        Task {
-            do {
-                let employeeList: EmployeeList = try await
-                EmployeeDirectoryAPIService().getEmployeeList(url: url)
-                employees = employeeList
-                    .employees
-                    .compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
-            } catch {
-                errorSubject.send(error)
-            }
+    func loadEmployees() async {
+        defer {
+            isLoading = false
+        }
+        
+        do {
+            isLoading = true
+            let employeeList = try await service.getEmployeeList(url: url)
+            
+            employees = employeeList
+                .employees
+                .compactMap(EmployeeSummaryCellModel.init).sorted { $0.name < $1.name }
+        } catch {
+            errorSubject.send(error)
         }
     }
 }

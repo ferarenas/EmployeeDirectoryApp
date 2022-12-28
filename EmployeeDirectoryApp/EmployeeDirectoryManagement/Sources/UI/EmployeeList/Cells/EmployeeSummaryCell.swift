@@ -10,10 +10,7 @@ protocol EmployeeSummaryCellViewModel {
 }
 
 final class EmployeeSummaryCell: UICollectionViewCell {
-    static var estimatedHeight: Double {
-        UIFontMetrics.default.scaledValue(for: Spacing.small)
-        + UIFontMetrics.default.scaledValue(for: Spacing.extraSmall)
-    }
+    static var estimatedHeight: Double { 120 }
     
     private let employeePhoto: UIImageView = .init()
     private let labelStackView: UIStackView = .init()
