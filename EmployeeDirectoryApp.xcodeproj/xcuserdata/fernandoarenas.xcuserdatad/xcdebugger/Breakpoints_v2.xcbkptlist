@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "337C53B3-8EBB-4AA4-B6F5-FBE30C0F9308"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEA823E7-C904-4996-B22D-0385AD830687"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EmployeeDirectoryApp/EmployeeDirectoryManagement/Sources/UI/EmployeeList/EmployeeListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55D09E1F-9E27-4489-802B-191EAA2E8005"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EmployeeDirectoryApp/EmployeeDirectoryManagement/Sources/UI/EmployeeList/EmployeeListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "55D09E1F-9E27-4489-802B-191EAA2E8005 - ef5c7619ea67c4c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EmployeeDirectoryApp.EmployeeListViewController.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "EmployeeDirectoryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fernandoarenas/Desktop/EmployeeDirectoryApp/EmployeeDirectoryApp/EmployeeDirectoryManagement/Sources/UI/EmployeeList/EmployeeListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  uuid = "55D09E1F-9E27-4489-802B-191EAA2E8005 - ef5c7619ea67c4c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EmployeeDirectoryApp.EmployeeListViewController.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "EmployeeDirectoryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fernandoarenas/Desktop/EmployeeDirectoryApp/EmployeeDirectoryApp/EmployeeDirectoryManagement/Sources/UI/EmployeeList/EmployeeListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "688">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
